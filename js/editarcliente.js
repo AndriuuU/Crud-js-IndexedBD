@@ -1,5 +1,5 @@
-// editarcliente.js
-import { conectarDB, actualizarCliente, obtenerClientes } from "./API.js";
+
+import { conectarDB, actualizarCliente, obtenerClientes } from "./app.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     await conectarDB();
@@ -7,7 +7,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const parametrosURL = new URLSearchParams(window.location.search);
     const idCliente = parametrosURL.get("id");
 
-    cargarCliente(idCliente);
+    if (idCliente) {
+        await cargarCliente(idCliente); 
+    } else {
+        alert("ID de cliente no proporcionado");
+    }
 
     document.querySelector("#formulario").addEventListener("submit", validarCliente);
 });
@@ -23,6 +27,8 @@ async function cargarCliente(id) {
         document.querySelector("#telefono").value = telefono;
         document.querySelector("#empresa").value = empresa;
         document.querySelector("#id").value = id;
+    } else {
+        alert("Cliente no encontrado");
     }
 }
 

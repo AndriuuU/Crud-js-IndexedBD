@@ -1,5 +1,5 @@
-// nuevocliente.js
-import { conectarDB, agregarCliente } from "./API.js";
+
+import { conectarDB, agregarCliente } from "./app.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     conectarDB();
